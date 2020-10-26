@@ -23,6 +23,14 @@ export const useTracker = () => {
   return useContext(TrackerContext)
 }
 
+export const getParentPage = pageName => {
+  if (!pageName) {
+    return null
+  }
+  const lastIndex = pageName.lastIndexOf(':')
+  return pageName.substring(0, lastIndex)
+}
+
 let lastTrackedPage
 const enhancedTrackPage = (tracker, pageNameArg) => {
   let parentPage = getParentPage(lastTrackedPage)
@@ -65,11 +73,4 @@ export const getPageLastPart = pageName => {
   }
   const lastIndex = pageName.lastIndexOf(':')
   return pageName.substring(lastIndex + 1)
-}
-export const getParentPage = pageName => {
-  if (!pageName) {
-    return null
-  }
-  const lastIndex = pageName.lastIndexOf(':')
-  return pageName.substring(0, lastIndex)
 }

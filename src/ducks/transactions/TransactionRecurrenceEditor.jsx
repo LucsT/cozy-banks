@@ -18,6 +18,9 @@ import CategoryIcon from 'ducks/categories/CategoryIcon'
 import styles from './TransactionRecurrenceEditor.styl'
 import Loading from 'components/Loading'
 
+const RECURRENT_ID = 'recurrent'
+const NEW_RECURRENCE_ID = 'new-recurrence'
+
 const makeOptionFromRecurrence = rec => {
   return {
     _id: rec._id,
@@ -39,9 +42,6 @@ const makeNewRecurrenceOption = t => {
     icon: <NewRecurrenceIcon />
   }
 }
-
-const RECURRENT_ID = 'recurrent'
-const NEW_RECURRENCE_ID = 'new-recurrence'
 
 const isSelectedHelper = (item, currentId) => {
   if (item._id === NOT_RECURRENT_ID && !currentId) {
