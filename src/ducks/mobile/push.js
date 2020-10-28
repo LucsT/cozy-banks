@@ -9,14 +9,6 @@ import { updateNotificationToken } from 'ducks/client/utils'
 
 let push
 
-export const startPushNotificationsIfSettingEnabled = async cozyClient => {
-  const settings = await fetchSettings(cozyClient)
-  if (!isNotificationEnabled(settings)) {
-    return
-  }
-  return startPushNotifications(cozyClient)
-}
-
 /**
  * When we receive a notification while the app is in foreground, all on('notification')
  * handlers are executed. But we don't want to redirect the user without his consent.
@@ -114,6 +106,14 @@ export const stopPushNotifications = async () => {
       console.warn('Error while stopping push notification', e)
     }
   }
+}
+
+export const startPushNotificationsIfSettingEnabled = async cozyClient => {
+  const settings = await fetchSettings(cozyClient)
+  if (!isNotificationEnabled(settings)) {
+    return
+  }
+  return startPushNotifications(cozyClient)
 }
 
 /**
